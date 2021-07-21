@@ -25,9 +25,7 @@ public class UserFeature_StepDefinitions {
     UsersPage usersPage;
     Select actualOptions;
     List<String> actualR ;
-    String xpath1;
-    String actutalResult;
-    String actualValue;
+
 
     @When("I click on {string} link")
     public void iClickOnLink(String arg0) {
