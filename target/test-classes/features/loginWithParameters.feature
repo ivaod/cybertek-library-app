@@ -12,7 +12,8 @@ Feature: Login
     And I enter password "I61FFPPf"
     And click the sign button
     Then dashboard should be displayed
-    And there should be "5570" users
+    And there should be "5572" users
+  #5570
 
  # Scenario: Login as librarian 12
    # Given I am on the login page

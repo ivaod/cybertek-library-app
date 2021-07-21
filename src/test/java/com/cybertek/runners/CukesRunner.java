@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue="com/cybertek/step_definitions",
         dryRun = false,
-        tags="@default"
+        tags="@login or @regression"
        // tags="@scenarioOutline or @students"
         //@wip
         //@login

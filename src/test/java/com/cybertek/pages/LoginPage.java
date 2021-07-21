@@ -23,7 +23,7 @@ public class LoginPage {
     @FindBy(xpath = "//button[text()='Sign in']")
     public WebElement signInButton;
 
-    @FindBy(xpath = "//h2[text()='5570']")
+    @FindBy(xpath = "//h2[text()='5572']")
     public WebElement userCount;
 
     @FindBy(xpath = "//span[.='Users']/..//i")
@@ -31,12 +31,15 @@ public class LoginPage {
 
     @FindBy(xpath = "//div[@id='tbl_users_wrapper']//select")
     public WebElement defaultValue;
+    @FindBy(xpath = "//div[@id='tbl_users_wrapper']//select/option")
+    public WebElement getDefaultValue1;
 
 
     public WebElement nameButton (String text){
         String locator= "//span[text()=\""+text+"\"]";
         return Driver.getDriver().findElement(By.xpath(locator));
     }
+
 
     public static void login(){
         String url = ConfigurationReader.getProperty("qa2_url");

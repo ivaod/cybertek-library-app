@@ -4,21 +4,30 @@ import com.cybertek.pages.LoginPage;
 import com.cybertek.pages.UsersPage;
 import com.cybertek.utilities.BrowserUtils;
 
+import com.cybertek.utilities.Driver;
+import io.cucumber.java.an.E;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import org.junit.Assert;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 
-import java.util.List;
+import java.util.*;
 
 public class UserFeature_StepDefinitions {
 
     LoginPage loginPage;
     UsersPage usersPage;
-    Select select;
+    Select actualOptions;
+    List<String> actualR ;
+    String xpath1;
+    String actutalResult;
+    String actualValue;
 
     @When("I click on {string} link")
     public void iClickOnLink(String arg0) {
@@ -36,36 +45,61 @@ public class UserFeature_StepDefinitions {
 
         loginPage.defaultValue.click();
 
-        select = new Select(loginPage.defaultValue);
+        actualOptions = new Select(loginPage.defaultValue);
 
         String expectedValue = String.valueOf(int1);
-        String actualValue = select.getFirstSelectedOption().getText();
+        String actualValue = actualOptions.getFirstSelectedOption().getText();
 
         Assert.assertEquals(expectedValue, actualValue);
 
+
     }
 
-     @Then("show records should have following options:")
-        public void show_records_should_have_following_options(List<String> num){
+    @Then("show records should have following options:")
+    public void show_records_should_have_following_options(List<String> expectedOptions) {
 
-            select = new Select(loginPage.defaultValue);
-            for(int i =0; i < num.size(); i++ ){
-                select.selectByValue(num.get(i));
-            }
-            System.out.println(num.toString());
-    }
 
-    @Then("table should have following column names:")
-    public void tableShouldHaveFollowingColumnNames(List<String> columnNames) {
+        actualOptions = new Select(loginPage.defaultValue);
 
-        loginPage.userButton.click();
+        for (int j = 0; j < expectedOptions.size(); j++) {
 
-        for(int i = 0; i < columnNames.size(); i ++){
-            usersPage.tabUsers(columnNames.get(i));
+            actualOptions.selectByValue(expectedOptions.get(j));
+
+
+            System.out.println(actualOptions.getFirstSelectedOption().getText());
+
         }
-        System.out.println(columnNames.toString());
+
     }
-}
+      @Then("table should have following column names:")
+        public void tableShouldHaveFollowingColumnNames (List < String > columnNames) {
+
+            loginPage.userButton.click();
+
+            for (int i = 0; i < columnNames.size(); i++) {
+
+                System.out.println(usersPage.tabUsers(columnNames.get(i)).toString());
+
+            }
+
+            //Assert.assertEquals(columnNames, list);
+
+            //System.out.println(columnNames.toString());
+        }
+    }
+
+
+     /* actualOptions = new Select(loginPage.defaultValue);
+            for(int i =0; i < expectedOptions.size(); i++ ){
+                actualOptions.selectByValue(expectedOptions.get(i));
+
+
+
+            }
+            Assert.assertEquals(expectedOptions, actualOptions);
+            BrowserUtils.sleep(2);
+           // System.out.println(loginPage.defaultValue.getText());*/
+
 
 
 
