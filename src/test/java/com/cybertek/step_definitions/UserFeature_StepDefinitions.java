@@ -41,9 +41,9 @@ public class UserFeature_StepDefinitions {
     public void show_records_default_value_should_be(Integer int1) {
 
 
-        loginPage.defaultValue.click();
+        usersPage.defaultValue.click();
 
-        actualOptions = new Select(loginPage.defaultValue);
+        actualOptions = new Select(usersPage.defaultValue);
 
         String expectedValue = String.valueOf(int1);
         String actualValue = actualOptions.getFirstSelectedOption().getText();
@@ -57,35 +57,47 @@ public class UserFeature_StepDefinitions {
     public void show_records_should_have_following_options(List<String> expectedOptions) {
 
 
-        actualOptions = new Select(loginPage.defaultValue);
+        actualOptions = new Select(usersPage.defaultValue);
 
         for (int j = 0; j < expectedOptions.size(); j++) {
 
             actualOptions.selectByValue(expectedOptions.get(j));
 
-
-            System.out.println(actualOptions.getFirstSelectedOption().getText());
+            Assert.assertTrue(usersPage.allOptions().equals(expectedOptions));
 
         }
-
     }
       @Then("table should have following column names:")
-        public void tableShouldHaveFollowingColumnNames (List < String > columnNames) {
+        public void tableShouldHaveFollowingColumnNames (List<String> columnName) {
 
             loginPage.userButton.click();
 
-            for (int i = 0; i < columnNames.size(); i++) {
+            List<String> eachColumn = usersPage.columnsNames();
 
-                System.out.println(usersPage.tabUsers(columnNames.get(i)).toString());
-
-            }
-
-            //Assert.assertEquals(columnNames, list);
-
-            //System.out.println(columnNames.toString());
+            Assert.assertTrue(eachColumn.equals(columnName));
         }
     }
 
+
+
+
+       /*wait.until(ExpectedConditions.visibilityOf(usersPage.showRecordsOption));
+               Assert.assertTrue(usersPage.allColumns().equals(expectedColumns));
+               }*/
+
+
+     /*for (int i = 0; i < columnNames.size(); i++) {
+
+              System.out.println(usersPage.tabUsers(columnNames.get(i)).toString());
+           }*/
+
+// List<WebElement> webElements = usersPage.tabUsers(columnNames);
+
+// List<String> namesList = new ArrayList<>();
+
+
+//Assert.assertTrue(columnNames.contains(namesList));
+// boolean flag = new UsersPage().tabUsers(columnNames.);
 
      /* actualOptions = new Select(loginPage.defaultValue);
             for(int i =0; i < expectedOptions.size(); i++ ){

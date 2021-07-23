@@ -10,6 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginPage {
     public LoginPage(){
         PageFactory.initElements(Driver.getDriver(), this);
@@ -23,14 +26,13 @@ public class LoginPage {
     @FindBy(xpath = "//button[text()='Sign in']")
     public WebElement signInButton;
 
-    @FindBy(xpath = "//h2[text()='5572']")
+    @FindBy(xpath = "//h2[text()='5576']")
     public WebElement userCount;
 
     @FindBy(xpath = "//span[.='Users']/..//i")
     public WebElement userButton;
 
-    @FindBy(xpath = "//div[@id='tbl_users_wrapper']//select")
-    public WebElement defaultValue;
+
     @FindBy(xpath = "//div[@id='tbl_users_wrapper']//select/option")
     public WebElement getDefaultValue1;
 
@@ -39,6 +41,8 @@ public class LoginPage {
         String locator= "//span[text()=\""+text+"\"]";
         return Driver.getDriver().findElement(By.xpath(locator));
     }
+
+
 
 
     public static void login(){
