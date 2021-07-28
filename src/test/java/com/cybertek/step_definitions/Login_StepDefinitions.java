@@ -34,6 +34,7 @@ public class Login_StepDefinitions {
 
     @When("click the sign button")
     public void click_the_sign_button() {
+
         loginPage.signInButton.click();
     }
 

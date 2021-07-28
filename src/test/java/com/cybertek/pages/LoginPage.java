@@ -26,6 +26,8 @@ public class LoginPage {
     @FindBy(xpath = "//button[text()='Sign in']")
     public WebElement signInButton;
 
+
+
     @FindBy(xpath = "//h2[text()='5576']")
     public WebElement userCount;
 
@@ -42,12 +44,44 @@ public class LoginPage {
         return Driver.getDriver().findElement(By.xpath(locator));
     }
 
+    /*
+    Login method that logs in with specific username
+     */
+    public void login1(){
+        emailAddressButton.sendKeys("username");
+        passwordButton.sendKeys("password");
+        signInButton.click();
+    }
+
+    /*
+    Login with admin
+     */
+    public void loginWithAdmin(){
+        emailAddressButton.sendKeys("admin");
+        passwordButton.sendKeys("password");
+        signInButton.click();
+    }
+
+    public void loginWithConfig(){
+        emailAddressButton.sendKeys(ConfigurationReader.getProperty("username"));
+        passwordButton.sendKeys(ConfigurationReader.getProperty("password"));
+        signInButton.click();
+    }
+
+    public void login(String username, String password){
+        emailAddressButton.sendKeys(username);
+        passwordButton.sendKeys(password);
+        signInButton.click();
+    }
+
+
 
 
 
     public static void login(){
         String url = ConfigurationReader.getProperty("qa2_url");
         Driver.getDriver().get(url);
+
     }
 
 
@@ -56,7 +90,6 @@ public class LoginPage {
         Driver.getDriver().findElement(By.xpath("//a[@id='navbarDropdown']")).click();
         Driver.getDriver().findElement(By.xpath("//a[text()='Log Out']")).click();
     }
-
 
 
 

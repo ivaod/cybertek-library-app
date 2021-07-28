@@ -2,21 +2,12 @@ package com.cybertek.step_definitions;
 
 import com.cybertek.pages.LoginPage;
 import com.cybertek.pages.UsersPage;
-import com.cybertek.utilities.BrowserUtils;
 
-import com.cybertek.utilities.Driver;
-import io.cucumber.java.an.E;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 import org.junit.Assert;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
-
 import java.util.*;
 
 public class UserFeature_StepDefinitions {
@@ -24,7 +15,6 @@ public class UserFeature_StepDefinitions {
     LoginPage loginPage;
     UsersPage usersPage;
     Select actualOptions;
-    List<String> actualR ;
 
 
     @When("I click on {string} link")
@@ -68,13 +58,13 @@ public class UserFeature_StepDefinitions {
         }
     }
       @Then("table should have following column names:")
-        public void tableShouldHaveFollowingColumnNames (List<String> columnName) {
+        public void tableShouldHaveFollowingColumnNames (List<String> expectedColumnName) {
 
             loginPage.userButton.click();
 
-            List<String> eachColumn = usersPage.columnsNames();
+            List<String> actualColumnName = usersPage.columnsNames();
 
-            Assert.assertTrue(eachColumn.equals(columnName));
+            Assert.assertTrue(actualColumnName.equals(expectedColumnName));
         }
     }
 
